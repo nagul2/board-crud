@@ -3,6 +3,7 @@ package spring.basic.simpleboard.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import spring.basic.simpleboard.dto.MemberResponseDto;
 import spring.basic.simpleboard.dto.SignUpResponseDto;
@@ -31,5 +32,17 @@ public class MemberServiceImpl implements MemberService {
         }
         Member findMember = optionalMember.get();
         return new MemberResponseDto(findMember.getUsername(), findMember.getAge());
+    }
+
+    @Transactional
+    @Override
+    public void updatePassword(Long id, String oldPassword, String newPassword) {
+        Member findMember = memberRepository.findByIdOrElseThrow(id);
+
+        if (!findMember.getPassword().equals(oldPassword)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "비밀번호가 일치하지 않습니다.");
+        }
+
+        findMember.updatePassword(newPassword);
     }
 }

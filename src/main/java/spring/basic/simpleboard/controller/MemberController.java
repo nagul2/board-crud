@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import spring.basic.simpleboard.dto.MemberResponseDto;
 import spring.basic.simpleboard.dto.SignUpRequestDto;
 import spring.basic.simpleboard.dto.SignUpResponseDto;
+import spring.basic.simpleboard.dto.UpdatePasswordRequestDto;
 import spring.basic.simpleboard.service.MemberService;
 
 @RestController
@@ -32,4 +33,11 @@ public class MemberController {
         return new ResponseEntity<>(memberResponseDto, HttpStatus.OK);
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> updatePassword(@PathVariable Long id, @RequestBody UpdatePasswordRequestDto requestDto) {
+
+        memberService.updatePassword(id, requestDto.oldPassword(), requestDto.newPassword());
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

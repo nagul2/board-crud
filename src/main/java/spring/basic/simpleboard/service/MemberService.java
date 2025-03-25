@@ -7,4 +7,6 @@ public interface MemberService {
     SignUpResponseDto signUp(String username, String password, Integer age);
 
     MemberResponseDto findById(Long id);
+
+    void updatePassword(Long id, String oldPassword, String newPassword);
 }
