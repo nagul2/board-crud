@@ -1,4 +1,4 @@
-package spring.basic.simpleboard.service;
+package spring.basic.simpleboard.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;

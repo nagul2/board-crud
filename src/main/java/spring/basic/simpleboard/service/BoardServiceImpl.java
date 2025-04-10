@@ -6,6 +6,7 @@ import spring.basic.simpleboard.dto.BoardResponseDto;
 import spring.basic.simpleboard.dto.BoardWithAgeResponseDto;
 import spring.basic.simpleboard.entity.Board;
 import spring.basic.simpleboard.entity.Member;
+import spring.basic.simpleboard.repository.BoardRepository;
 import spring.basic.simpleboard.repository.MemberRepository;
 
 import java.util.List;
